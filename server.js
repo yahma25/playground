@@ -7,10 +7,17 @@ const express = require('express');
 const server = express();
 const port = 3000;
 
+const path = require('path');
 const fs = require('fs');
 
+// middleware...
+const publicPath = path.join(__dirname, 'public/');
+// Set static path to get static resources from the public path
+server.use(express.static(publicPath));
+
 server.get('/', (req, res) => {
-  fs.readFile('index.html', (error, data) => {
+  const mainFilePath = path.join(publicPath, 'index.html');
+  fs.readFile(mainFilePath, (error, data) => {
     if (error) {
       console.error(error);
     } else {
@@ -24,7 +31,7 @@ server.get('/', (req, res) => {
 });
 
 server.listen(port, () => {
-  console.log('Running Server!');
+  console.log('Server is running!');
 });
 
 module.exports = server;
