@@ -1,0 +1,14 @@
+{
+  "name": "Playground",
+  "version": "1.0.0",
+  "description": "My playground",
+  "main": "index.js",
+  "repository": "https://github.com/yahma25/Playground.git",
+  "author": "mhkim <yahma25@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "eslint": "^7.15.0",
+    "prettier": "2.2.1"
+  }
+}
