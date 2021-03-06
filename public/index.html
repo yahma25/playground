@@ -4,9 +4,32 @@
     <meta charset="UTF-8" />
     <title>Front-end Developer MyoungHo Kim's Playground</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://uicdn.toast.com/chart/latest/toastui-chart.min.css" />
+    <script src="https://uicdn.toast.com/chart/latest/toastui-chart.min.js"></script>
+
+    <!-- TODO - Change to use default CSS -->
+    <style>
+      a {
+          text-decoration: none;
+      }
+    </style>
   </head>
   <body>
     Welcome to my playground!
+    <!-- TODO - Change to a way rendering dynamic -->
+    <nav>
+      <ul>
+        <li><a href='/'>Home</a></li>
+        <li><a href='/about'>About</a></li>
+        <li><a href='/dailylog'>Daily log</a></li>
+      </ul>
+    </nav>
     <div id="root"></div>
+    <script src='index.js'></script>
+    <!-- TODO - Simplify JavaScript files -->
+    <script src='page/daily-log/daily-log-page.js'></script>
+    <script src='personal/daily-log/daily-log.js'></script>
+    <script src='personal/daily-log/daily-sheet.js'></script>
   </body>
 </html>
