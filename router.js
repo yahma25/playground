@@ -8,7 +8,7 @@ import dailyLogRouter from './api/personal/daily-log';
  */
 function getApiList() {
   return [
-    { path: composePath('/personal/daily-log'), handler: dailyLogRouter }
+    { path: composePath('/personal/dailylog'), handler: dailyLogRouter }
   ];
 }
 

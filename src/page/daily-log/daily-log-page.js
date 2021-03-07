@@ -18,7 +18,7 @@ class DailyLogPage {
 
     // TODO - change asynchronous rendering using a state
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'api/personal/daily-log');
+    xhr.open('GET', 'api/personal/dailylog');
     xhr.onload = (ev) => {
       const dailyLogSheets = Array.from(JSON.parse(ev.currentTarget.response));
       const sheet2021 = dailyLogSheets.find(sheet => sheet.id === '467902381');
