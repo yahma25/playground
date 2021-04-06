@@ -8,7 +8,7 @@ import express from 'express';
 import path from 'path';
 import fs from 'fs';
 
-import ServerConfig from './server-config'
+import ServerConfig from './config/server-config'
 import ApiRouter from './api/api-router';
 
 const server = express();

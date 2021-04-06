@@ -6,7 +6,7 @@ import DailyLog from '../../../src/personal/daily-log/daily-log';
 
 import { google } from 'googleapis';
 import express from 'express';
-import ServerConfig from '../../../server-config';
+import ServerConfig from '../../../config/server-config';
 import Controller from '../../Controller';
 
 class DailyLogController extends Controller {
