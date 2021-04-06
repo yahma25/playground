@@ -1,5 +1,4 @@
 import DailySheet from 'src/personal/daily-log/daily-sheet';
-import DailyLog from 'src/personal/daily-log/daily-log';
 
 describe('model DailySheet', () => {
   it('is correct all data', () => {
@@ -720,11 +719,13 @@ describe('model DailySheet', () => {
       }
     ];
 
-    const dailySheet = new DailySheet(
-      '467902381',
-      '2021',
-      mockData.map(log => Object.setPrototypeOf(log, new DailyLog))
-    );
+    const mock = {
+      "id": "467902381",
+      "title": "2021",
+      "logs": mockData
+    };
+
+    const dailySheet = DailySheet.createFromJson(mock);
 
     const expectedMonths = [1, 2];
     expect(dailySheet.getMonths()).toEqual(expectedMonths);

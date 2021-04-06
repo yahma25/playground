@@ -1,4 +1,11 @@
 module.exports = {
-  // To use import syntax
-  presets: [['@babel/preset-env', { targets: { node: 'current' } }]]
+  presets: [
+    // To use import syntax
+    '@babel/preset-env',
+    '@babel/preset-typescript'
+  ],
+  plugins: [
+    // To transform json to class
+    '@babel/plugin-proposal-class-properties'
+  ]
 };
