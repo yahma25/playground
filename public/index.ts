@@ -1,10 +1,12 @@
-const root = document.getElementById('root');
+import DailyLogPage from "../src/page/daily-log/daily-log-page";
+
+const root: HTMLElement = <HTMLElement>document.getElementById('root');
 
 window.onload = () => {
   routing(window.location.pathname);
 };
 
-function routing(endpoint) {
+function routing(endpoint: string) {
   const ROUTE_HOME = '/';
   const ROUTE_DAILY = '/dailylog';
 

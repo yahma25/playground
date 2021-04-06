@@ -1,25 +1,36 @@
 'use strict';
 
-import ApiResponseStatus from '../../api-enum';
+import { ApiResponseStatus } from '../../api-enum';
 import DailySheet from '../../../src/personal/daily-log/daily-sheet';
 import DailyLog from '../../../src/personal/daily-log/daily-log';
 
 import { google } from 'googleapis';
+import express from 'express';
+import ServerConfig from '../../../server-config';
+import Controller from '../../Controller';
 
-/**
- * Get all Daily Sheet in my Daily Log
- * @param req: request
- * @param res: response
- * @returns {Promise<[DailySheet]>}
- */
-const index = async (req, res) => {
-  try {
-    const dailySheets = await createDailySheetsFromGoogle();
-    return res.status(ApiResponseStatus.SUCCESS).json(dailySheets);
-  } catch (e) {
-    return res.status(ApiResponseStatus.INTERNAL_SERVER_ERROR).end();
+class DailyLogController extends Controller {
+  constructor() {
+    super();
+    this.router.get('/', this.index);
   }
-};
+
+  /**
+   * Get all Daily Sheet in my Daily Log
+   * @param req: request
+   * @param res: response
+   * @returns {Promise<[DailySheet]>}
+   */
+  public async index(req: express.Request, res: express.Response): Promise<any> {
+    try {
+      const dailySheets = await createDailySheetsFromGoogle();
+      return res.status(ApiResponseStatus.SUCCESS).json(dailySheets);
+    } catch (e) {
+      console.log(e);
+      return res.status(ApiResponseStatus.INTERNAL_SERVER_ERROR).end();
+    }
+  }
+}
 
 /**
  * Return DailySheetList that extracted from google spreadsheet
@@ -29,7 +40,7 @@ const index = async (req, res) => {
 async function createDailySheetsFromGoogle() {
   const googleSheets = google.sheets({
     version: 'v4',
-    auth: config.google.spreadsheet.apiKey
+    auth: ServerConfig.getGoogleSpreadsheetAPIKey()
   });
 
   const spreadsheet = await getSpreadsheet(googleSheets);
@@ -59,7 +70,7 @@ async function createDailySheetsFromGoogle() {
  * @param id
  * @returns {DailyLog[]}
  */
-function createDailyLogList(sheetRows, startRowNo, id) {
+function createDailyLogList(sheetRows: any[], startRowNo: number, id: string) {
   const logs = [];
   for (let i = startRowNo; i < sheetRows.length; i++) {
     const rangeValue = sheetRows[i];
@@ -79,16 +90,12 @@ function createDailyLogList(sheetRows, startRowNo, id) {
  * @param id
  * @returns {DailyLog}
  */
-function createDailyLog(column, id) {
-  const SHEET_ID_2020_YEAR = '960931952';
-  // column[3] is the content(ko) so it is ignored
-  const sheet2020YearValues = [
-    column[0], column[1], column[2], column[4], column[5]
-  ];
+function createDailyLog(column: any, id: string) {
+  const SHEET_ID_2020_YEAR: string = '960931952';
 
   return id === SHEET_ID_2020_YEAR
-    ? new DailyLog(...sheet2020YearValues)
-    : new DailyLog(...column);
+    ? new DailyLog(column[0], column[1], column[2], column[4], column[5])
+    : new DailyLog(column[0], column[1], column[2], column[3], column[4], column[5]);
 }
 
 /**
@@ -97,11 +104,11 @@ function createDailyLog(column, id) {
  * @link https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets/get?apix_params=%7B%22spreadsheetId%22%3A%221z5zB5Vz-mRh9Um0c4YAwsf6TtVVyBKFP1I_hlsAdJRo%22%2C%22includeGridData%22%3Atrue%7D
  * @returns {Promise<Schema$Spreadsheet>}
  */
-async function getSpreadsheet(sheets) {
+async function getSpreadsheet(sheets: any) {
   let data = null;
 
   try {
-    const request = { spreadsheetId: config.google.spreadsheet.sheetId };
+    const request = { spreadsheetId: ServerConfig.getGoogleSpreadsheetSheetId() };
     data = (await sheets.spreadsheets.get(request)).data;
     return data;
   } catch (e) {
@@ -116,7 +123,7 @@ async function getSpreadsheet(sheets) {
  * - https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/get
  * @returns {Promise<Schema$ValueRange>}
  */
-async function getSheetValueRange(sheets, title) {
+async function getSheetValueRange(sheets: any, title: string) {
   let data = null;
 
   try {
@@ -124,7 +131,7 @@ async function getSheetValueRange(sheets, title) {
     // 'ZZ' should is changed to the last column.
     const range = `${title}!A:ZZ`;
     const request = {
-      spreadsheetId: config.google.spreadsheet.sheetId,
+      spreadsheetId: ServerConfig.getGoogleSpreadsheetSheetId(),
       range
     };
     data = (await sheets.spreadsheets.values.get(request)).data;
@@ -135,4 +142,4 @@ async function getSheetValueRange(sheets, title) {
   }
 }
 
-module.exports = { index };
+export default DailyLogController;

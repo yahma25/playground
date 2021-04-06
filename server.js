@@ -8,18 +8,14 @@ import express from 'express';
 import path from 'path';
 import fs from 'fs';
 
-import router from './router';
-
-import globalConfig from './server-config';
+import ServerConfig from './server-config'
+import ApiRouter from './api/api-router';
 
 const server = express();
 
-/**
- * [global setting]
- */
-// Load local a config file
-// Note: do not use import('./server-config') because that handles as an asynchronous
-global.config = globalConfig;
+/* [global setting] */
+// Load a local config file for the security
+ServerConfig.init(JSON.parse(fs.readFileSync('./config/api-config.json')));
 
 // middleware
 const publicPath = path.join(__dirname, 'public/');
@@ -28,7 +24,8 @@ server.use(express.static(publicPath));
 server.use(express.static(path.join(__dirname, 'src/')));
 
 // api
-router.getList().forEach(route => server.use(route.path, route.handler));
+new ApiRouter().getApiRoutersOfControllers()
+  .forEach(routerParam => server.use(`/api${routerParam.path}`, routerParam.router));
 
 const routeMainIndexPage = (res) => {
   const mainFilePath = path.join(publicPath, 'index.html');
@@ -60,8 +57,8 @@ server.get('/about', (req, res) => {
   });
 });
 
-server.listen(config.port, () => {
-  console.log('Server is running!');
+server.listen(ServerConfig.getPort(), () => {
+  console.log(`Server is running! port:${ServerConfig.getPort()}`);
 });
 
 module.exports = server;

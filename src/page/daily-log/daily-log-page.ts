@@ -1,3 +1,5 @@
+import DailySheet from '../../personal/daily-log/daily-sheet';
+
 /**
  * This page shows my daily logs from google spread sheet
  * Chart: Implement using Library(TOAST UI - Chart)
@@ -9,7 +11,7 @@ class DailyLogPage {
    * TODO - Simplify, Modularization, Asynchronous rendering, Using http request library
    * @returns {HTMLDivElement}
    */
-  render() {
+  public render() {
     const element = document.createElement('div');
     element.className = 'dailylog-page-container';
     element.style.width = '70vw';
@@ -17,16 +19,19 @@ class DailyLogPage {
     element.innerText = 'Loading...';
 
     // TODO - change asynchronous rendering using a state
+    // TODO - change XMLHttpRequest to axios library
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'api/personal/dailylog');
-    xhr.onload = (ev) => {
-      const dailyLogSheets = Array.from(JSON.parse(ev.currentTarget.response));
-      const sheet2021 = dailyLogSheets.find(sheet => sheet.id === '467902381');
+    xhr.onload = (ev: any) => {
+      const dailyLogSheets: Array<DailySheet> = Array
+        .from(JSON.parse(ev.currentTarget.response))
+        .map(sheet => DailySheet.createFromJson(sheet as DailySheet));
+
+      const sheet2021 = dailyLogSheets.find(sheet => sheet.getId() === '467902381');
       if (!sheet2021) return;
 
       // Change JSON to Class to use class's method
-      const sheet = Object.setPrototypeOf(dailyLogSheets[0], new DailySheet);
-      sheet.logs = sheet.logs.map(log => Object.setPrototypeOf(log, new DailyLog));
+      const sheet: DailySheet = dailyLogSheets[0];
 
       const months = sheet.getMonths();
       const categoryTypes = sheet.getCategoryNames().map(categoryName => {
@@ -42,7 +47,7 @@ class DailyLogPage {
         series: categoryTypes
       };
 
-      const title = `${sheet2021.title} Monthly`;
+      const title = `${sheet2021.getTitle()} Monthly`;
 
       const theme = {
         series: {
@@ -68,6 +73,7 @@ class DailyLogPage {
       // To render asynchronous rendering
       window.setTimeout(() => {
         element.innerText = '';
+        // @ts-ignore
         toastui.Chart.columnChart({ el: element, data, options });
       }, 0);
     }
@@ -77,3 +83,5 @@ class DailyLogPage {
     return element;
   }
 }
+
+export default DailyLogPage;
