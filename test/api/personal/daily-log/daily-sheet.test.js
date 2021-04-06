@@ -7,9 +7,9 @@ import should from 'should';
 describe('GET daily-log', () => {
   it('responds spreadsheet rows as an array', (done) => {
     request(server)
-      .get('/api/personal/daily-log')
+      .get('/api/personal/dailylog')
       .end((err, res) => {
-        res.body.should.be.instanceOf(Array);
+        res.body.should.be.instanceOf(Object);
         done();
       });
   });
