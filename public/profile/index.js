@@ -9,7 +9,7 @@ const content = `
 
 I have been working as a developer for +4 years.
 * Front-end +3 years
-* Windows programming 1 year
+* Windows programming +1 year
 
 In the past, I had worked as a game designer who designs a game system and a game concept for 4 years.
 
