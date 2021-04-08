@@ -10,9 +10,11 @@ import ServerConfig from '../../../config/server-config';
 import Controller from '../../Controller';
 
 class DailyLogController extends Controller {
+  private cachedDailySheets?: Array<DailySheet>;
+
   constructor() {
     super();
-    this.router.get('/', this.index);
+    this.router.get('/', this.index.bind(this));
   }
 
   /**
@@ -23,7 +25,9 @@ class DailyLogController extends Controller {
    */
   public async index(req: express.Request, res: express.Response): Promise<any> {
     try {
-      const dailySheets = await createDailySheetsFromGoogle();
+      const dailySheets = !!this.cachedDailySheets && this.cachedDailySheets.length > 0
+        ? this.cachedDailySheets
+        : this.cachedDailySheets = await createDailySheetsFromGoogle();
       return res.status(ApiResponseStatus.SUCCESS).json(dailySheets);
     } catch (e) {
       console.log(e);
@@ -37,7 +41,7 @@ class DailyLogController extends Controller {
  * @link https://github.com/googleapis/google-api-nodejs-client#using-api-keys
  * @returns {Promise<DailySheet[]>}
  */
-async function createDailySheetsFromGoogle() {
+async function createDailySheetsFromGoogle(): Promise<Array<DailySheet>> {
   const googleSheets = google.sheets({
     version: 'v4',
     auth: ServerConfig.getGoogleSpreadsheetAPIKey()
@@ -70,7 +74,7 @@ async function createDailySheetsFromGoogle() {
  * @param id
  * @returns {DailyLog[]}
  */
-function createDailyLogList(sheetRows: any[], startRowNo: number, id: string) {
+function createDailyLogList(sheetRows: any[], startRowNo: number, id: string): Array<DailyLog> {
   const logs = [];
   for (let i = startRowNo; i < sheetRows.length; i++) {
     const rangeValue = sheetRows[i];
@@ -90,7 +94,7 @@ function createDailyLogList(sheetRows: any[], startRowNo: number, id: string) {
  * @param id
  * @returns {DailyLog}
  */
-function createDailyLog(column: any, id: string) {
+function createDailyLog(column: any, id: string): DailyLog {
   const SHEET_ID_2020_YEAR: string = '960931952';
 
   return id === SHEET_ID_2020_YEAR
