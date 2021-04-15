@@ -12,7 +12,6 @@
     "server": "babel-node server.js",
     "server-debug": "babel-node --inspect server.js",
     "tsc-watch": "tsc --watch",
-    "bundle": "browserify public/index.js -o public/bundle.js",
     "test": "jest --forceExit"
   },
   "devDependencies": {
