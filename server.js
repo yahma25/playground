@@ -22,6 +22,7 @@ const publicPath = path.join(__dirname, 'public/');
 // Set static path to get static resources from the public path
 server.use(express.static(publicPath));
 server.use(express.static(path.join(__dirname, 'src/')));
+server.use(express.static(path.join(__dirname, 'dist/')));
 
 // api
 new ApiRouter().getApiRoutersOfControllers()
