@@ -1,4 +1,4 @@
-import DailyLogPage from "../src/page/daily-log/daily-log-page";
+import DailyLogPage from "./page/daily-log/daily-log-page";
 
 const root: HTMLElement = <HTMLElement>document.getElementById('root');
 
