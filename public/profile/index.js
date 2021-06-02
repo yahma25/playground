@@ -7,9 +7,12 @@ const content = `
 
 # MyoungHo Kim (Front-end Developer)
 
+> Become a person who improves more than yesterday.
+> "If you make a goal, you just go for it to achieve. You can't afford to be afraid of failure."
+
 I have been working as a developer for +4 years.
 * Front-end +3 years
-* Windows programming 1 year
+* Windows programming 1.5 years
 
 In the past, I had worked as a game designer who designs a game system and a game concept for 4 years.
 
@@ -17,8 +20,7 @@ In the past, I had worked as a game designer who designs a game system and a gam
 ### Commercial experience
 * HTML
 * CSS/SASS(SCSS)
-* JavaScript
-* TypeScript
+* JavaScript, TypeScript
 * React
 * Delphi
 
@@ -29,27 +31,32 @@ In the past, I had worked as a game designer who designs a game system and a gam
 
 # Experience
 ### MIRIDIH | Seoul, Korea | 2016.11 - present
-* SPA Editor service, Junior Front-end developer, 3+ years
-* Windows Editor service, Junior Software developer, 1 year
+* SPA Design Editor service, Junior Front-end Developer, 3 years
+* Windows Design Editor service, Junior Software Developer, 1.5 year
 
-### GamesLab | Seoul, Korea | 2012.1 - 2016.1
-* Online/Mobile game service, Junior Game designer, 4 years
+### GamesLab | Seoul, Korea | 2012.01 - 2016.01
+* Online/Mobile Game service, Junior Game Designer, 4 years
 
 # Project
-### Printing service | 2019.11 - present
-* Developed printing features(ex. Page mask, Pre-flight) that need for over 15 products while managing teammates' issues as the main developer.
-* Collaborated with the product order service team, made the first revenue by linking two services where users can design on their own in the design editor and order their designs. ($1,600,000 a month)
+### Enterprising service | 2021.01 - present
+* Contributing to providing a design feedback system for people who discuss between team members about their design.
 
-### SPA Editor service | 2018.01 - 2019.10
+<br/>
+
+### Printing service | 2019.11 - 2020.12
+* Developed printing features(ex. Page mask, Pre-flight) that need for over 15 products while managing teammates' issues as the main developer.
+* Collaborated with the product order service team, made the first revenue by linking two services where users can design on their own in the design editor and order their designs. ($50,000 weekly)
+
+<br/>
+
+### SPA Design Editor service | 2018.07 - 2019.10
 * Joined SPA service team based on Typescript, developed a few core features(ex. photo crop, background library, design download) of the editor that users can design on their own.
 * Contributed to become the service that has users over 600k and to rank in a higher list in the design editor service industry in Korea.
 
-### Windows Editor service maintanence | 2016.11 - 2017.12
-* Solved many errors and technical debt that was accumulated in the editor base on Delphi.
-    * Collected the error logs (EurekaLog) with implementing the error log parser (EurekaLog Parse) in person
-    * Inserted content parsed in a database
-    * Created issues for the errors by analyzing the call stacks
-    * Shared to my teammates and solved the errors in person
+<br/>
+
+### Windows Design Editor service | 2016.11 - 2018.06
+* Solved many errors and technical debt that was accumulated by analyzing a log parser(EurekaLog Parse) I created in person.
 * Achieved to reduce the maximum error rate by 9.06% → 1.70% based on an average of 280k executions per month.
 
 # Education
