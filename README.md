@@ -5,4 +5,4 @@ I want to make my website. I will build anything I would like to here such as a 
 Learning from Front-end to Back-end.
 
 ## Tiny rules
-- Write English about anything to study English.
+* Write commit messages in English for my English study.
