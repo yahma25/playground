@@ -9,3 +9,5 @@ Learning from Front-end to Back-end.
 ## Tiny rules
 
 * Write commit messages and comments in English for my English study.
+
+트리 쉐이킹 문서 작성하기
