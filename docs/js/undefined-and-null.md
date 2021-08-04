@@ -145,5 +145,9 @@ console.log(JSON.stringify({life: null})); // {"life":null}
 * `✨` https://github.com/sindresorhus/meta/discussions/7
 * `✨` https://2ality.com/2021/01/undefined-null-revisited.html#the-history-of-undefined-and-null
 * https://google.github.io/styleguide/tsguide.html#null-vs-undefined
+* `📑` https://engineering.dollarshaveclub.com/typescript-maybe-type-and-module-627506ecc5c8#6d6d
+* `📑` https://github.com/microsoft/TypeScript/pull/7140
+* `📑` https://github.com/microsoft/TypeScript/issues/7426
+* `📑` https://github.com/microsoft/TypeScript/issues/9653
 
 ps. Reference 글 뿐만 아니라 관련 topic에 대한 내용이 너무 많아서 나중에 다시 더 살펴봐야할 것 같다.
