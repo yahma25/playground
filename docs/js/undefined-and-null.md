@@ -138,6 +138,12 @@ console.log(JSON.stringify({life: null})); // {"life":null}
 
 <br>
 
+## --strictNullChecks
+
+[TypeScript Playground 테스트](https://www.typescriptlang.org/play?ts=4.4.0-beta#code/DYUwLgBAHgXBB2BXAtgIxAJwNwCgoQF4IBGLCCAegogHkBrPQiReAExADMBLeEVsytQCiGDAHsMjIkmDABVCCPGScoSAE84SNJggAfZm048+udU1LkF9HOaIt23XvyvUbdhIlnzhoiTlVwCAAvLRR0DH1PWSiHY2dcYIsfWgYk+yMnU1dUnHTouRybKQh1FKV-fCJg8r9JDygU9yYanIrJfMaitKYy7oCOFgBjMC4xeAgOMTEACgBDAH4wnQwASggAbxxyCDnBQgA+TxXYzJNWHABfAeHR8YhUOYx55YjTx3P1rZ29hQIj7RvAxxLIXS5AA)
+
+<br>
+
 ## Reference
 
 * https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines#null-and-undefined
