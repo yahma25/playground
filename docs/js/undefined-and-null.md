@@ -146,7 +146,7 @@ console.log(JSON.stringify({life: null})); // {"life":null}
 * `✨` https://2ality.com/2021/01/undefined-null-revisited.html#the-history-of-undefined-and-null
 * https://google.github.io/styleguide/tsguide.html#null-vs-undefined
 * `📑` https://engineering.dollarshaveclub.com/typescript-maybe-type-and-module-627506ecc5c8#6d6d
-* `📑` https://github.com/microsoft/TypeScript/pull/7140
+* `✨` [Non-nullable types](https://github.com/microsoft/TypeScript/pull/7140)
 * `📑` https://github.com/microsoft/TypeScript/issues/7426
 * `📑` https://github.com/microsoft/TypeScript/issues/9653
 
