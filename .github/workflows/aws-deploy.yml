@@ -26,7 +26,6 @@ jobs:
       - name: Build
         run: yarn build
         
-        # 
       - name: Create zip
         run: zip -qq -r build.zip ./dist
         shell: bash
@@ -35,7 +34,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-acess-key: AWS_SECRET_ACCESS_KEY
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_REGION
           
       - name: Upload to S3
