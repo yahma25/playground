@@ -1,0 +1,20 @@
+version: 1.0.0
+os: linux
+
+files:
+  - source: /
+    destination: /usr/share/nginx/html/dist
+    overwrite: yes
+    
+permissions:
+  - object: /usr/share/nginx/html/dist
+    owner: root
+    group: root
+    mode: 755
+
+hooks:
+  AfterInstall:
+    # 프로젝트의 root경로를 기준
+    - location: deploy.sh
+      timeout: 60
+      runas: root
