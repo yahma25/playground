@@ -28,7 +28,7 @@ jobs:
         
         # 
       - name: Create zip
-        run: zip -qq -r playground.zip ./playground/dist
+        run: zip -qq -r build.zip ./dist
         shell: bash
         
       - name: Configure AWS credentials
@@ -40,7 +40,7 @@ jobs:
           
       - name: Upload to S3
         run:
-          aws s3 cp --region AWS_REGION ./playground.zip s3://yahma25-playground-deploy/
+          aws s3 cp --region AWS_REGION ./build.zip s3://yahma25-playground-deploy/
 
       # CodeDeploy 애플리케이션
       - name: Deploy to EC2
@@ -49,4 +49,4 @@ jobs:
             --application-name playground
             --deployment-config-name CodeDeployDefault.AllAtOnce
             --deployment-group-name deploy-playground
-            --s3-location bucket=yahma25-playground-deploy, key=./playground.zip, bundleType=zip
+            --s3-location bucket=yahma25-playground-deploy, key=./build.zip, bundleType=zip
