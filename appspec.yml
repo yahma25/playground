@@ -1,13 +1,13 @@
-version: 1.0.0
+version: 0.0
 os: linux
 
 files:
   - source: /
-    destination: /home/ubuntu/playground-deploy
+    destination: /home/ubuntu/playground-build
     overwrite: yes
     
 permissions:
-  - object:  /home/ubuntu/playground-deploy
+  - object:  /home/ubuntu/playground-build
     owner: root
     group: root
     mode: 755
@@ -15,6 +15,6 @@ permissions:
 hooks:
   AfterInstall:
     # 프로젝트의 root경로를 기준
-    - location: scripts/deploy.sh
+    - location: /scripts/deploy.sh
       timeout: 60
       runas: root
