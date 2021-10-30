@@ -28,7 +28,7 @@ jobs:
         
         # 
       - name: Create zip
-        run: zip -qq -r playground.zip
+        run: zip -qq -r playground.zip ./playground/dist
         shell: bash
         
       - name: Configure AWS credentials
