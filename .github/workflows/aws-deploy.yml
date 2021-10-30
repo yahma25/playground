@@ -33,13 +33,13 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          aws-region: ap-northeast-2
+          aws-access-key-id: ${{ secrets.AWS_DEPLOY_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_DEPLOY_ACCESS_SECRET_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
           
       - name: Upload to S3
         run:
-          aws s3 cp --region AWS_REGION ./build.zip s3://yahma25-playground-deploy/
+          aws s3 cp --region ${{ secrets.AWS_REGION }} ./build.zip s3://yahma25-playground-deploy/
 
       # CodeDeploy 애플리케이션
       - name: Deploy to EC2
