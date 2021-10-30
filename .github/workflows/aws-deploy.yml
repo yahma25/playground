@@ -43,4 +43,4 @@ jobs:
             --application-name playground
             --deployment-config-name CodeDeployDefault.AllAtOnce
             --deployment-group-name deploy-playground
-            --s3-location bucket=yahma25-playground-deploy,key=./build.zip,bundleType=zip
+            --s3-location bucket=yahma25-playground-deploy,key=build.zip,bundleType=zip
