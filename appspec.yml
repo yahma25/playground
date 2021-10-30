@@ -1,13 +1,12 @@
 version: 0.0
 os: linux
-
 files:
   - source: /
     destination: /home/ubuntu/playground-build
     overwrite: yes
     
 permissions:
-  - object:  /home/ubuntu/playground-build
+  - object: /home/ubuntu/playground-build
     owner: root
     group: root
     mode: 755
