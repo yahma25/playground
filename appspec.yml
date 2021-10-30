@@ -3,11 +3,11 @@ os: linux
 
 files:
   - source: /
-    destination: /usr/share/nginx/html/dist
+    destination: /home/ubuntu/playground-deploy
     overwrite: yes
     
 permissions:
-  - object: /usr/share/nginx/html/dist
+  - object:  /home/ubuntu/playground-deploy
     owner: root
     group: root
     mode: 755
@@ -15,6 +15,6 @@ permissions:
 hooks:
   AfterInstall:
     # 프로젝트의 root경로를 기준
-    - location: deploy.sh
+    - location: scripts/deploy.sh
       timeout: 60
       runas: root
