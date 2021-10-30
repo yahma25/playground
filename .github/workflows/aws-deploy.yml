@@ -1,0 +1,52 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    env:
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_DEPLOY_ACCESS_KEY }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DEPLOY_ACCESS_SECRET_KEY }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Check Node version
+        run: node -v
+        
+      - name: Install packages
+        run: yarn install
+
+      - name: Build
+        run: yarn build
+        
+        # 
+      - name: Create zip
+        run: zip -qq -r playground.zip
+        shell: bash
+        
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-acess-key: AWS_SECRET_ACCESS_KEY
+          aws-region: AWS_REGION
+          
+      - name: Upload to S3
+        run:
+          aws s3 cp --region AWS_REGION ./playground.zip s3://yahma25-playground-deploy/
+
+      # CodeDeploy 애플리케이션
+      - name: Deploy to EC2
+        run:
+          aws deploy create-deployment
+            --application-name playground
+            --deployment-config-name CodeDeployDefault.AllAtOnce
+            --deployment-group-name deploy-playground
+            --s3-location bucket=yahma25-playground-deploy, key=./playground.zip, bundleType=zip
