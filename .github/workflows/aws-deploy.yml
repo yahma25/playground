@@ -22,7 +22,7 @@ jobs:
         run: yarn build
         
       - name: Create zip
-        run: zip -qq -r build.zip ./dist
+        run: zip -qq -r build.zip appspec.yml scripts/ dist/
         shell: bash
         
       - name: Configure AWS credentials
