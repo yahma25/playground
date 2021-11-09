@@ -18,15 +18,15 @@ module.exports = {
         test: /\.tsx?$/,
         loader: 'ts-loader',
       },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader',
-            options: { minimize: true } // minimize: Make one line
-          }
-        ]
-      }
+      // {
+      //   test: /\.html$/,
+      //   use: [
+      //     {
+      //       loader: 'html-loader',
+      //       options: { minimize: true } // minimize: Make one line
+      //     }
+      //   ]
+      // }
     ]
   },
   plugins: [
